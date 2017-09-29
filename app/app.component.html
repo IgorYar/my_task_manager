@@ -1,0 +1,67 @@
+<td>
+   <table>
+        <thead>
+            <h2>Task List</h2>
+        </thead>
+        <tbody>
+            <tr class='task_item' *ngFor="let task of tasks" (click)="onSelect(task)">
+                <td class='title'>{{task.title}}</td>
+                <td>{{task.deadline | date:'dd-MM-yyyy'}}</td>
+                <button (click)="destroyTask(task)">Delete</button>
+            </tr>
+        </tbody>
+    </table> 
+</td>
+<td>
+    <table>
+        <thead>
+            <tr>
+                <th>Create Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <input type="text" [(ngModel)]="title" placeholder="title" />
+            </tr>
+            <tr>
+                <input type="text" [(ngModel)]="desc" placeholder="description" />
+            <tr>
+            <tr>
+                <input type="text" [(ngModel)]="deadline" placeholder="deadline" />
+            <tr>  
+            <tr>
+                <button (click)="addTask(title, desc, deadline)">Create</button>
+            <tr>
+        </tbody>
+    </table>    
+</td>
+<div *ngIf="selectedTask">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Deadline</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <input type="text" [(ngModel)]="selectedTask.title" />
+                </th>
+                <th>
+                    <input type="text" [(ngModel)]="selectedTask.desc" />
+                </th>
+                <th>
+                    <input type="text" [(ngModel)]="selectedTask.deadline" />
+                </th>
+                <th>
+                    <button (click)="moveUpTask(selectedTask)">Move Up</button>
+                </th>
+                <th>
+                    <button (click)="moveDownTask(selectedTask)">Move Down</button>
+                </th>   
+            </tr>    
+        </tbody>
+    </table>
+</div>
